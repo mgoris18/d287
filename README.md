@@ -209,5 +209,52 @@ lines 48-49
  td th:text="${tempPart.minimum}">1</td>
  td th:text="${tempPart.maximum}">1</td>
 
-</pre>
+INSERT - Part.java
+lines 32-34
 
+  @Min (value = 0, message = "Minimum inventory must be at least 1")
+    int minimum;
+    int maximum;
+
+lines 97-101
+ public void setMinimum(int minimum) { this.minimum = minimum; }
+    public int getMinimum() { return this.minimum; }
+    
+    public void setMaximum(int maximum) { this.maximum = maximum; }
+    public int getMaximum() { return this.maximum; }
+
+INSERT - INhousePart and OurSourcePart
+lines 18-20
+this.minimum = 0; this.maximum = 100;
+
+lines 24-24
+ <p><input type ="text" th:field="*{minimum}" placeholder="Minimum" class="form-control mb-4 col-4"/></p>
+
+    <p><input type ="text" th:field="*{maximum}" placeholder="Maximum" class="form-control mb-4 col-4"/></p>
+    
+    <p><input type="text" th:field="*{partId}" placeholder="Part ID" class="form-control mb-4 col-4"/></p>
+    
+    <p>
+    <div th:if="${#fields.hasAnyErrors()}">
+        <ul> <li th:each="err: ${#fields.alErrors()}" th:text="${err}"></li></ul>
+    </div>
+    </p>
+    
+CHANGE - application.properties
+line 16
+spring.datasource.url=jdbc:h2:file:~/src/main.resources/spring-boot-h2-db102
+
+INSERT - part.java
+line 89-95
+ public void validateLimits() {
+        if (this.inv < this.minimum ) {
+            this.inv = this.minimum;
+        } else if (this.inv > this.maximum) {
+            this.inv = this.maximum;
+        }
+    }
+
+INSERT - Inhousepartserviceimpl.java and outourcedpartserviceimpl.java
+line 54
+
+thePart.validateLimits();
