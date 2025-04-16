@@ -122,3 +122,92 @@ if (partRepository.count() == 0 {
         }
 
 </pre>
+
+<h3> Part F </h3>
+<pre>
+CREATE - productpurchaseconfirmation.html
+< !Doctype html>
+< html lang = "en">
+ <head>
+    < meta chatset="UTF-8">
+    < itle>Product Purchase Confirmation</title>
+< /head>
+< body>
+< h1> You're product has been succesfully purchased</h1>
+
+a href="mainscreen.html"> Main Screen</a
+< /body>
+< /html>
+
+
+
+CREATE - productpurchaseerror.html
+
+<!Doctype html>
+< html lang = "en">
+ < head>
+    < meta chatset="UTF-8">
+    < title>Product Purchase Confirmation</title>
+< /head>
+< body>
+< h1> You're product has been succesfully purchased< /h1>
+
+< a href="mainscreen.html"> Main Screen</a>
+< /body>
+< /html>
+
+
+INSERT - mainscreen.html
+line 85-86
+< a th:hreg="@{/buyproduct(productID=${tempProduct.id})}" class="btn btn-primary btn-sm mb-3"
+onclick="if(!(confirm('Are you sure you want to purchase this product?')))return false">Buy</a>
+</
+
+
+INSERT - product.java
+lines 109-117
+
+//test to ensure product is in existence before decrementing
+public boolean buyProduct() {
+if ( this.inv >= 1) {
+this.inv--;
+return true;
+} else {
+return false;
+}
+}
+
+
+
+
+INSERT - ADDProductController.Java
+lines 175-187
+@ GetMapping("/buyproduct")
+public String buyproduct(@RequestParam("productID") int theID, Model theModel){
+ProductService productService = context.getBean(ProductServiceImpl.class);
+Product product2 = productService.findById(theID);
+
+        boolean productPurchaseConfirmation = product2.buyProduct();
+        if ( productPurchaseConfirmation ) {
+            productService.save(product2);
+            return "productpurchaseconfirmation";
+        }
+
+        return "productpurchaseerror";
+    }
+</pre>
+
+<h3> Part G </h3>
+
+<pre>
+INSERT - Mainscreen.html
+lines 38-39
+< th>Minimum /th >
+< th>MaximuM /th >           
+
+lines 48-49
+ td th:text="${tempPart.minimum}">1</td>
+ td th:text="${tempPart.maximum}">1</td>
+
+</pre>
+

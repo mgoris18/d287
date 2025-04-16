@@ -105,3 +105,13 @@ public class Product implements Serializable {
         return (int) (id ^ (id >>> 32));
     }
 }
+
+//test to ensure product is in existence before decrementing
+    public boolean buyProduct() {
+    if (this.inv >= 1) {
+        this.inv--;
+        return true;
+    } else {
+        return false;
+    }
+}

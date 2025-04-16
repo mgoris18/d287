@@ -7,6 +7,7 @@ import com.example.demo.service.PartServiceImpl;
 import com.example.demo.service.ProductService;
 import com.example.demo.service.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.orm.jpa.EntityManagerFactoryBuilderCustomizer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,8 @@ public class AddProductController {
     private List<Part> theParts;
     private static Product product1;
     private Product product;
+    @Autowired
+    private EntityManagerFactoryBuilderCustomizer entityManagerFactoryBootstrapExecutorCustomizer;
 
     @GetMapping("/showFormAddProduct")
     public String showFormAddPart(Model theModel) {
@@ -168,4 +171,21 @@ public class AddProductController {
         theModel.addAttribute("availparts",availParts);
         return "productForm";
     }
+
+    @GetMapping("/buyproduct")
+    public String buyproduct(@RequestParam("productID") int theID, Model theModel){
+        ProductService productService = context.getBean(ProductServiceImpl.class);
+        Product product2 = productService.findById(theID);
+
+        boolean productPurchaseConfirmation = product2.buyProduct();
+        if ( productPurchaseConfirmation ) {
+            productService.save(product2);
+            return "productpurchaseconfirmation";
+        }
+
+        return "productpurchaseerror";
+    }
+
+
 }
+
