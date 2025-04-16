@@ -354,3 +354,32 @@ String message() default "Inventory cannot exceed maximum number of parts";
 Class<?>[] groups() default {};
 Class<? extends Payload>[] payload() default {};
 }
+
+</pre>
+
+<h3> Part I </h3>
+
+<pre>
+
+INSERT - PartTest.java
+lines 160-176
+@Test
+    void getMinimum() {
+        int minimum =5;
+        partIn.setMinimum(minimum);
+        assertEquals(minimum,partIn.getMinimum());
+        partOut.setMinimum(minimum);
+        assertEquals(minimum,partOut.getMinimum());
+    }
+    
+    @Test
+    void getMaximum() {
+        int maximum =5;
+        partIn.setMaximum(maximum);
+        assertEquals(maximum,partIn.getMaximum());
+        partOut.setMaximum(maximum);
+        assertEquals(maximum,partOut.getMaximum());
+    }
+
+</pre>
+
