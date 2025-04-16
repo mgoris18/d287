@@ -228,11 +228,11 @@ lines 18-20
 this.minimum = 0; this.maximum = 100;
 
 lines 24-24
- <p><input type ="text" th:field="*{minimum}" placeholder="Minimum" class="form-control mb-4 col-4"/></p>
+ <p>< nput type ="text" th:field="*{minimum}" placeholder="Minimum" class="form-control mb-4 col-4"/></p>
 
-    <p><input type ="text" th:field="*{maximum}" placeholder="Maximum" class="form-control mb-4 col-4"/></p>
+    <p> input type ="text" th:field="*{maximum}" placeholder="Maximum" class="form-control mb-4 col-4"/></p>
     
-    <p><input type="text" th:field="*{partId}" placeholder="Part ID" class="form-control mb-4 col-4"/></p>
+    <p> input type="text" th:field="*{partId}" placeholder="Part ID" class="form-control mb-4 col-4"/></p>
     
     <p>
     <div th:if="${#fields.hasAnyErrors()}">
@@ -258,3 +258,99 @@ INSERT - Inhousepartserviceimpl.java and outourcedpartserviceimpl.java
 line 54
 
 thePart.validateLimits();
+</pre>
+<h3> Part H </h3>
+<pre>
+
+INSERT - Part.java
+lines 19-20
+@ValidPartInventory
+@ValidPartInventoryMin
+
+CREATE - PartInventoryMinValidator.java
+package com.example.demo.validators;
+
+import com.example.demo.domain.Part;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
+public class PartInventoryMinimumValidator implements ConstraintValidator <ValidPartInventoryMinimum, Part> {
+@Autowired
+private ApplicationContext context;
+
+    public static ApplicationContext myContext;
+
+    @Override
+    @public void initialize(ValidPartInventoryMinimum constraintAnnotation) {
+        ConstraintValidator.super.initialize(constraintAnnotation);
+        
+    }
+    
+    @Override
+    public boolean isValid(Part part, ConstraintValidatorContext constraintValidatorContext) {
+        return part.getInv() > part.getMinimum();
+    }
+}
+
+CREATE Validpartinventoryminimum.java
+
+package com.example.demo.validators;
+
+import javax.validation.Constraint;
+import javax.validation.ConstraintValidatorContext;
+import javax.validation.Payload;
+import java.lang.annotation.RetentionPolicy;
+
+@Constraint(validatedBy = {PartInventoryMinimumValidator.class})
+@Target({ElementType.Type})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface ValidPartInventoryMinimum {
+String message() default "Inventory cannt be lower than the minimum";
+Class<?>[] groups() default {};
+Class<? extends Payload>[] payload() default {};
+
+}
+
+CREATE- PartInventoryValidator.java
+
+package com.example.demo.validators;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
+public class PartInventoryValidator implements ConstraintValidator<ValidPartInventory, Part> {
+@Autowired
+private ApplicationContext context;
+public static ApplicationContext myContext;
+
+    @Override
+    public void initialize(ValidPartInventory constraintAnnotation) {
+        ConstraintValidator.super.initialize(constraintAnnotation);
+    }
+
+    @Override
+    public boolean isValid(Part part, ConstraintValidatorContext constraintValidatorContext) {
+        return part.getInv() <= part.getMaximum();
+}
+}
+
+CREATE - ValidPartInventory.java
+package com.example.demo.validators;
+
+import javax.validation.Payload;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Constraint(validateBy = {PartInventoryValidator.class})
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface ValidPartInventory {
+String message() default "Inventory cannot exceed maximum number of parts";
+Class<?>[] groups() default {};
+Class<? extends Payload>[] payload() default {};
+}
