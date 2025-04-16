@@ -383,3 +383,5 @@ lines 160-176
 
 </pre>
 
+<h3> Part J </h3>
+All validators are being used
