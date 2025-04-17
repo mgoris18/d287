@@ -1,6 +1,8 @@
 package com.example.demo.domain;
 
 import com.example.demo.validators.ValidDeletePart;
+import com.example.demo.validators.ValidPartInventory;
+import com.example.demo.validators.ValidPartInventoryMinimum;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -17,7 +19,7 @@ import java.util.Set;
 @Entity
 @ValidDeletePart
 @ValidPartInventory
-@ValidPartInventoryMin
+@ValidPartInventoryMinimum
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="part_type",discriminatorType = DiscriminatorType.INTEGER)
 @Table(name="Parts")

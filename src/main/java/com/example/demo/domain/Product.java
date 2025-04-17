@@ -28,8 +28,8 @@ public class Product implements Serializable {
     double price;
     @Min(value = 0, message = "Inventory value must be positive")
     int inv;
-    @ManyToMany(cascade=CascadeType.ALL, mappedBy = "products")
-    Set<Part> parts= new HashSet<>();
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
+    Set<Part> parts = new HashSet<>();
 
     public Product() {
     }
@@ -87,9 +87,10 @@ public class Product implements Serializable {
         this.parts = parts;
     }
 
-    public String toString(){
+    public String toString() {
         return this.name;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -104,14 +105,14 @@ public class Product implements Serializable {
     public int hashCode() {
         return (int) (id ^ (id >>> 32));
     }
-}
 
-//test to ensure product is in existence before decrementing
+    //test to ensure product is in existence before decrementing
     public boolean buyProduct() {
-    if (this.inv >= 1) {
-        this.inv--;
-        return true;
-    } else {
-        return false;
+        if (this.inv >= 1) {
+            this.inv--;
+            return true;
+        } else {
+            return false;
+        }
     }
 }

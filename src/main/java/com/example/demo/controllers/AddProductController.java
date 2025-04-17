@@ -32,8 +32,6 @@ public class AddProductController {
     private List<Part> theParts;
     private static Product product1;
     private Product product;
-    @Autowired
-    private EntityManagerFactoryBuilderCustomizer entityManagerFactoryBootstrapExecutorCustomizer;
 
     @GetMapping("/showFormAddProduct")
     public String showFormAddPart(Model theModel) {

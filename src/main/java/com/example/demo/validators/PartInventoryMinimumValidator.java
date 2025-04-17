@@ -14,7 +14,7 @@ public class PartInventoryMinimumValidator implements ConstraintValidator <Valid
     public static ApplicationContext myContext;
 
     @Override
-    @public void initialize(ValidPartInventoryMinimum constraintAnnotation) {
+    public void initialize(ValidPartInventoryMinimum constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
 
     }

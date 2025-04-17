@@ -70,27 +70,27 @@ public class BootStrapData implements CommandLineRunner {
 
         if (partRepository.count() == 0) {
 
-            InHousePart pearPhone13screen = new InhousePart();
+            InhousePart pearPhone13screen = new InhousePart();
             pearPhone13screen.setName("Pear Phone 13 Screen");
             pearPhone13screen.setPrice(49.99);
             pearPhone13screen.setInv(20);
 
-            InHousePart pearPhone15screen = new InhousePart();
+            InhousePart pearPhone15screen = new InhousePart();
             pearPhone15screen.setName("Pear Phone 15 Screen");
             pearPhone15screen.setPrice(69.99);
             pearPhone15screen.setInv(20);
 
-            InHousePart pearPhone13Camera = new InhousePart();
+            InhousePart pearPhone13Camera = new InhousePart();
             pearPhone13Camera.setName("Pear Phone 13 Camera");
             pearPhone13Camera.setPrice(64.99);
             pearPhone13Camera.setInv(20);
 
-            InHousePart pearPhone15Camera = new InhousePart();
+            InhousePart pearPhone15Camera = new InhousePart();
             pearPhone15Camera.setName("Pear Phone 15 Camera");
             pearPhone15Camera.setPrice(89.99);
             pearPhone15Camera.setInv(20);
 
-            InHousePart pearPhone16screen = new InhousePart();
+            InhousePart pearPhone16screen = new InhousePart();
             pearPhone16screen.setName("Pear Phone 16 Screen");
             pearPhone16screen.setPrice(99.99);
             pearPhone16screen.setInv(20);

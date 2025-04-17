@@ -1,7 +1,7 @@
 package com.example.demo.validators;
-
+import org.springframework.context.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import com.example.demo.domain.Part;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
