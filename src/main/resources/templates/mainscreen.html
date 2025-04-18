@@ -86,13 +86,14 @@
             <td><a th:href="@{/showProductFormForUpdate(productID=${tempProduct.id})}" class="btn btn-primary btn-sm mb-3">Update</a>
                 <a th:href="@{/deleteproduct(productID=${tempProduct.id})}" class="btn btn-primary btn-sm mb-3"
                    onclick="if(!(confirm('Are you sure you want to delete this product?')))return false">Delete</a>
-                <a th:hreg="@{/buyproduct(productID=${tempProduct.id})}" class="btn btn-primary btn-sm mb-3"
+                <a th:href="@{/buyproduct(productID=${tempProduct.id})}" class="btn btn-primary btn-sm mb-3"
                    onclick="if(!(confirm('Are you sure you want to purchase this product?')))return false">Buy</a>
             </td>
         </tr>
         </tbody>
     </table>
-    <a href="src/main/resources/templates/about.html">About Us</a>
+    <a th:href="@{/about}">About Us</a>
+
 </div>
 </body>
 </html>
