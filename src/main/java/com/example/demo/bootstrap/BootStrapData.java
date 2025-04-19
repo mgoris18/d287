@@ -85,21 +85,21 @@ public class BootStrapData implements CommandLineRunner {
             pearPhone13Camera.setPrice(64.99);
             pearPhone13Camera.setInv(20);
 
-            InhousePart pearPhone15Camera = new InhousePart();
-            pearPhone15Camera.setName("Pear Phone 15 Camera");
-            pearPhone15Camera.setPrice(89.99);
-            pearPhone15Camera.setInv(20);
-
-            InhousePart pearPhone16screen = new InhousePart();
-            pearPhone16screen.setName("Pear Phone 16 Screen");
-            pearPhone16screen.setPrice(99.99);
-            pearPhone16screen.setInv(20);
+//            InhousePart pearPhone15Camera = new InhousePart();
+//            pearPhone15Camera.setName("Pear Phone 15 Camera");
+//            pearPhone15Camera.setPrice(89.99);
+//            pearPhone15Camera.setInv(20);
+//
+//            InhousePart pearPhone16screen = new InhousePart();
+//            pearPhone16screen.setName("Pear Phone 16 Screen");
+//            pearPhone16screen.setPrice(99.99);
+//            pearPhone16screen.setInv(20);
 
             partRepository.save(pearPhone13screen);
             partRepository.save(pearPhone15screen);
             partRepository.save(pearPhone13Camera);
-            partRepository.save(pearPhone15Camera);
-            partRepository.save(pearPhone16screen);
+//            partRepository.save(pearPhone15Camera);
+//            partRepository.save(pearPhone16screen);
 
         }
         if (outsourcedPartRepository.count() == 0) {
@@ -115,29 +115,29 @@ public class BootStrapData implements CommandLineRunner {
             PearPhone12battery.setInv(20);
             PearPhone12battery.setCompanyName("Pear");
 
-            OutsourcedPart PearPhone14battery = new OutsourcedPart();
-            PearPhone14battery.setName("Pear Phone 14 battery");
-            PearPhone14battery.setPrice(899.99);
-            PearPhone14battery.setInv(20);
-            PearPhone14battery.setCompanyName("Pear");
+//            OutsourcedPart PearPhone14battery = new OutsourcedPart();
+//            PearPhone14battery.setName("Pear Phone 14 battery");
+//            PearPhone14battery.setPrice(899.99);
+//            PearPhone14battery.setInv(20);
+//            PearPhone14battery.setCompanyName("Pear");
 
-            OutsourcedPart PearPhone15battery = new OutsourcedPart();
-            PearPhone15battery.setName("Pear Phone 15 battery");
-            PearPhone15battery.setPrice(999.99);
-            PearPhone15battery.setInv(20);
-            PearPhone15battery.setCompanyName("Pear");
-
-            OutsourcedPart PearPhone16battery = new OutsourcedPart();
-            PearPhone16battery.setName("Pear Phone 16 battery");
-            PearPhone16battery.setPrice(1499.99);
-            PearPhone16battery.setInv(20);
-            PearPhone16battery.setCompanyName("Pear");
+//            OutsourcedPart PearPhone15battery = new OutsourcedPart();
+//            PearPhone15battery.setName("Pear Phone 15 battery");
+//            PearPhone15battery.setPrice(999.99);
+//            PearPhone15battery.setInv(20);
+//            PearPhone15battery.setCompanyName("Pear");
+//
+//            OutsourcedPart PearPhone16battery = new OutsourcedPart();
+//            PearPhone16battery.setName("Pear Phone 16 battery");
+//            PearPhone16battery.setPrice(1499.99);
+//            PearPhone16battery.setInv(20);
+//            PearPhone16battery.setCompanyName("Pear");
 
             outsourcedPartRepository.save(PearPhone13battery);
             outsourcedPartRepository.save(PearPhone12battery);
-            outsourcedPartRepository.save(PearPhone14battery);
-            outsourcedPartRepository.save(PearPhone15battery);
-            outsourcedPartRepository.save(PearPhone16battery);
+//            outsourcedPartRepository.save(PearPhone14battery);
+//            outsourcedPartRepository.save(PearPhone15battery);
+//            outsourcedPartRepository.save(PearPhone16battery);
         }
 
         if (productRepository.count() == 0) {
